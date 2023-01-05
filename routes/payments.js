@@ -47,11 +47,13 @@ router.post('/create-virtual-acc', function (req, res, next) {
     }
 })
 
-router.get('/webhook', function (req, res, next) {
-    if (res.event === 'virtual_account.created') {
-        res.send(`virtual acc created for ${res.payload.virtual_account.customer_id}`)
+router.post('/webhook', function (req, res, next) {
+    if (req.body.event === 'virtual_account.created') {
+        res.send("success")
+        console.log(`virtual acc created for ${req.body.payload.virtual_account.customer_id}`)
     } else {
-        res.send(`${res.payload.payment.amount} received for ${res.payload.virtual_account.customer_id}`)
+        res.send("success")
+        console.log(`${req.body.payload.payment.amount} received for ${req.body.payload.virtual_account.customer_id}`)
     }
 })
 
