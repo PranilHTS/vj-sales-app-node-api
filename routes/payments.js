@@ -48,12 +48,13 @@ router.post('/create-virtual-acc', function (req, res, next) {
 })
 
 router.post('/webhook', function (req, res, next) {
+    console.log(req.body)
     if (req.body.event === 'virtual_account.created') {
         res.send("success")
         console.log(`virtual acc created for ${req.body.payload.virtual_account.customer_id}`)
     } else {
         res.send("success")
-        console.log(`${req.body.payload.payment.amount} received for ${req.body.payload.virtual_account.customer_id}`)
+        console.log(`${req.body.payload.payment.entity.amount} received for ${req.body.payload.virtual_account.entity.customer_id}`)
     }
 })
 
